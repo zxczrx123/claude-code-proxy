@@ -24,6 +24,15 @@ class Config:
         # Connection settings
         self.request_timeout = int(os.environ.get("REQUEST_TIMEOUT", "90"))
         self.max_retries = int(os.environ.get("MAX_RETRIES", "2"))
+        self.openai_wire_api = os.environ.get("OPENAI_WIRE_API", "responses").strip().lower()
+        self.openai_reasoning_effort = os.environ.get("OPENAI_REASONING_EFFORT", "xhigh").strip()
+        self.openai_text_verbosity = os.environ.get("OPENAI_TEXT_VERBOSITY", "").strip()
+        self.openai_store_responses = os.environ.get("OPENAI_STORE_RESPONSES", "false").strip().lower() in {
+            "1",
+            "true",
+            "yes",
+            "on",
+        }
         
         # Model settings - BIG and SMALL models
         self.big_model = os.environ.get("BIG_MODEL", "gpt-4o")
